@@ -186,7 +186,7 @@ public class Board {
 		player.setPosition(tile);
 		tile.land(player, this);
 
-		if (tile.getType() == Type.PROPERTY || tile.getType() == Type.RAILROAD || tile.getType() == Type.UTILITY) {
+		if (tile.isOwnable()) {
 			final OwnableTile ownableTile = (OwnableTile) tile;
 			if (ownableTile.getOwner() == null) {
 				if (player.willBuy(ownableTile)) {

@@ -3,7 +3,7 @@ package ca.jonathanfritz.funopoly.tiles;
 import ca.jonathanfritz.funopoly.Board;
 import ca.jonathanfritz.funopoly.Player;
 
-public abstract class OwnableTile implements Tile {
+public abstract class OwnableTile extends Tile {
 
 	private final String name;
 	private final int price;

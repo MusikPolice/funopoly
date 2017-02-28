@@ -3,7 +3,7 @@ package ca.jonathanfritz.funopoly.tiles;
 import ca.jonathanfritz.funopoly.Board;
 import ca.jonathanfritz.funopoly.Player;
 
-public class FreeParking implements Tile {
+public class FreeParking extends Tile {
 
 	@Override
 	public void land(Player player, Board board) {

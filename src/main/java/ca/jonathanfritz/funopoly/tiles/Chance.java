@@ -7,7 +7,7 @@ import ca.jonathanfritz.funopoly.Player;
 import ca.jonathanfritz.funopoly.tiles.Property.Deed;
 import ca.jonathanfritz.funopoly.tiles.Railroad.Line;
 
-public class Chance implements Tile {
+public class Chance extends Tile {
 
 	private final ChanceDeck cards;
 

@@ -5,7 +5,7 @@ import ca.jonathanfritz.funopoly.CommunityChestDeck;
 import ca.jonathanfritz.funopoly.CommunityChestDeck.CommunityChestCard;
 import ca.jonathanfritz.funopoly.Player;
 
-public class CommunityChest implements Tile {
+public class CommunityChest extends Tile {
 
 	private final CommunityChestDeck cards;
 

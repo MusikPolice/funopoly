@@ -3,15 +3,19 @@ package ca.jonathanfritz.funopoly.tiles;
 import ca.jonathanfritz.funopoly.Board;
 import ca.jonathanfritz.funopoly.Player;
 
-public interface Tile {
+public abstract class Tile {
 
-	public Type getType();
+	public abstract Type getType();
 
 	/**
 	 * Called when the specified player lands on the tile
 	 * @param player the player that landed on the tile
 	 */
-	public void land(Player player, Board board);
+	public abstract void land(Player player, Board board);
+
+	public boolean isOwnable() {
+		return getType() == Type.PROPERTY || getType() == Type.RAILROAD || getType() == Type.UTILITY;
+	}
 
 	public enum Type {
 		GO,

@@ -3,7 +3,7 @@ package ca.jonathanfritz.funopoly.tiles;
 import ca.jonathanfritz.funopoly.Board;
 import ca.jonathanfritz.funopoly.Player;
 
-public class Go implements Tile {
+public class Go extends Tile {
 
 	@Override
 	public void land(Player player, Board board) {
