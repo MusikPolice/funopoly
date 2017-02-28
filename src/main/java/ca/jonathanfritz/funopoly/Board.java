@@ -129,12 +129,18 @@ public class Board {
 				// roll the dice
 				final DiceRollResult result = dice.roll();
 				lastDiceRoll = result.value;
-				if (player.isInJail() && result.isDoubles) {
-					// doubles releases player from jail, but player does not get to roll again
-					System.out.println(player.toString() + " rolled doubles to get out of jail");
-					player.setInJail(false);
-					playerCanRoll = false;
-					doublesCounter = 0;
+				if (player.isInJail()) {
+					if (result.isDoubles) {
+						// doubles releases player from jail, but player does not get to roll again
+						System.out.println(player.toString() + " rolled doubles to get out of jail");
+						player.setInJail(false);
+						playerCanRoll = false;
+						doublesCounter = 0;
+					} else {
+						System.out.println(player.toString() + " ends their turn in jail");
+						playerCanRoll = false;
+						continue;
+					}
 				} else if (result.isDoubles) {
 					// if player isn't in jail, doubles grants another turn
 					playerCanRoll = true;
