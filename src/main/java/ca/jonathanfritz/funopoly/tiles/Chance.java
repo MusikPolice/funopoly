@@ -1,9 +1,9 @@
 package ca.jonathanfritz.funopoly.tiles;
 
 import ca.jonathanfritz.funopoly.Board;
-import ca.jonathanfritz.funopoly.ChanceDeck;
-import ca.jonathanfritz.funopoly.ChanceDeck.ChanceCard;
 import ca.jonathanfritz.funopoly.Player;
+import ca.jonathanfritz.funopoly.cards.ChanceDeck;
+import ca.jonathanfritz.funopoly.cards.ChanceDeck.ChanceCard;
 import ca.jonathanfritz.funopoly.tiles.Property.Deed;
 import ca.jonathanfritz.funopoly.tiles.Railroad.Line;
 

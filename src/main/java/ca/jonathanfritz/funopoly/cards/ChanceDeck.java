@@ -1,4 +1,4 @@
-package ca.jonathanfritz.funopoly;
+package ca.jonathanfritz.funopoly.cards;
 
 import java.util.ArrayList;
 import java.util.Collections;

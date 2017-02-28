@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ca.jonathanfritz.funopoly.Dice.DiceRollResult;
+import ca.jonathanfritz.funopoly.cards.ChanceDeck;
+import ca.jonathanfritz.funopoly.cards.CommunityChestDeck;
 import ca.jonathanfritz.funopoly.tiles.Chance;
 import ca.jonathanfritz.funopoly.tiles.CommunityChest;
 import ca.jonathanfritz.funopoly.tiles.FreeParking;

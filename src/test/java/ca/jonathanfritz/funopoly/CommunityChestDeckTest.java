@@ -8,7 +8,8 @@ import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ca.jonathanfritz.funopoly.CommunityChestDeck.CommunityChestCard;
+import ca.jonathanfritz.funopoly.cards.CommunityChestDeck;
+import ca.jonathanfritz.funopoly.cards.CommunityChestDeck.CommunityChestCard;
 
 public class CommunityChestDeckTest {
 
