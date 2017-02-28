@@ -8,8 +8,8 @@ import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ca.jonathanfritz.funopoly.cards.ChanceDeck;
-import ca.jonathanfritz.funopoly.cards.ChanceDeck.ChanceCard;
+import ca.jonathanfritz.funopoly.cards.ChanceCard;
+import ca.jonathanfritz.funopoly.cards.Deck;
 
 public class ChanceDeckTest {
 
@@ -18,7 +18,7 @@ public class ChanceDeckTest {
 		final Map<ChanceCard, Integer> cardCount = new HashMap<>();
 
 		// draw all cards
-		final ChanceDeck deck = new ChanceDeck();
+		final Deck<ChanceCard> deck = Deck.chance();
 		for (int i = 0; i < ChanceCard.values().length + 1; i++) {
 			// there are 16 chance cards. two are advance to nearest railroad. others are unique
 			final ChanceCard card = deck.draw();
@@ -45,7 +45,7 @@ public class ChanceDeckTest {
 		final Map<ChanceCard, Integer> cardCount = new HashMap<>();
 
 		// draw all cards plus one, causing the deck to shuffle
-		final ChanceDeck deck = new ChanceDeck();
+		final Deck<ChanceCard> deck = Deck.chance();
 		for (int i = 0; i < ChanceCard.values().length + 2; i++) {
 			// there are 16 chance cards. two are advance to nearest railroad. others are unique
 			final ChanceCard card = deck.draw();
@@ -70,7 +70,7 @@ public class ChanceDeckTest {
 		final Map<ChanceCard, Integer> cardCount = new HashMap<>();
 
 		// make the goojf card unavailable
-		final ChanceDeck deck = new ChanceDeck();
+		final Deck<ChanceCard> deck = Deck.chance();
 		deck.setGetOutOfJailFreeCardAvailable(false);
 
 		// draw all cards - we've removed the goojf card so we have to draw one less cards than the number in the deck

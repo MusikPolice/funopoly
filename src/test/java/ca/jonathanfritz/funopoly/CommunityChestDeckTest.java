@@ -8,8 +8,8 @@ import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ca.jonathanfritz.funopoly.cards.CommunityChestDeck;
-import ca.jonathanfritz.funopoly.cards.CommunityChestDeck.CommunityChestCard;
+import ca.jonathanfritz.funopoly.cards.CommunityChestCard;
+import ca.jonathanfritz.funopoly.cards.Deck;
 
 public class CommunityChestDeckTest {
 
@@ -18,7 +18,7 @@ public class CommunityChestDeckTest {
 		final Map<CommunityChestCard, Integer> cardCount = new HashMap<>();
 
 		// draw all cards
-		final CommunityChestDeck deck = new CommunityChestDeck();
+		final Deck<CommunityChestCard> deck = Deck.communityChest();
 		for (int i = 0; i < CommunityChestCard.values().length; i++) {
 			// there are 15 unique CommunityChest cards
 			final CommunityChestCard card = deck.draw();
@@ -41,7 +41,7 @@ public class CommunityChestDeckTest {
 		final Map<CommunityChestCard, Integer> cardCount = new HashMap<>();
 
 		// draw all cards plus one, causing the deck to shuffle
-		final CommunityChestDeck deck = new CommunityChestDeck();
+		final Deck<CommunityChestCard> deck = Deck.communityChest();
 		for (int i = 0; i < CommunityChestCard.values().length + 1; i++) {
 			// there are 15 unique CommunityChest cards
 			final CommunityChestCard card = deck.draw();
@@ -65,7 +65,7 @@ public class CommunityChestDeckTest {
 		final Map<CommunityChestCard, Integer> cardCount = new HashMap<>();
 
 		// make the goojf card unavailable
-		final CommunityChestDeck deck = new CommunityChestDeck();
+		final Deck<CommunityChestCard> deck = Deck.communityChest();
 		deck.setGetOutOfJailFreeCardAvailable(false);
 
 		// draw all cards - we've removed the goojf card so we have to draw one less cards than the number in the deck

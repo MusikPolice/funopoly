@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ca.jonathanfritz.funopoly.Dice.DiceRollResult;
-import ca.jonathanfritz.funopoly.cards.ChanceDeck;
-import ca.jonathanfritz.funopoly.cards.CommunityChestDeck;
+import ca.jonathanfritz.funopoly.cards.ChanceCard;
+import ca.jonathanfritz.funopoly.cards.CommunityChestCard;
+import ca.jonathanfritz.funopoly.cards.Deck;
 import ca.jonathanfritz.funopoly.tiles.Chance;
 import ca.jonathanfritz.funopoly.tiles.CommunityChest;
 import ca.jonathanfritz.funopoly.tiles.FreeParking;
@@ -27,8 +28,8 @@ import ca.jonathanfritz.funopoly.tiles.Utility;
 public class Board {
 
 	private final Dice dice = new Dice();
-	private final ChanceDeck chanceDeck = new ChanceDeck();
-	private final CommunityChestDeck communityChestDeck = new CommunityChestDeck();
+	private final Deck<ChanceCard> chanceDeck = Deck.chance();
+	private final Deck<CommunityChestCard> communityChestDeck = Deck.communityChest();
 
 	private final List<Tile> tiles = new ArrayList<>();
 

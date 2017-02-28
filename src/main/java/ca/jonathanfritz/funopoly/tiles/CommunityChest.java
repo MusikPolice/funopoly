@@ -1,15 +1,15 @@
 package ca.jonathanfritz.funopoly.tiles;
 
 import ca.jonathanfritz.funopoly.Board;
-import ca.jonathanfritz.funopoly.cards.CommunityChestDeck;
-import ca.jonathanfritz.funopoly.cards.CommunityChestDeck.CommunityChestCard;
 import ca.jonathanfritz.funopoly.Player;
+import ca.jonathanfritz.funopoly.cards.CommunityChestCard;
+import ca.jonathanfritz.funopoly.cards.Deck;
 
 public class CommunityChest extends Tile {
 
-	private final CommunityChestDeck cards;
+	final Deck<CommunityChestCard> cards;
 
-	public CommunityChest(CommunityChestDeck cards) {
+	public CommunityChest(Deck<CommunityChestCard> cards) {
 		this.cards = cards;
 	}
 

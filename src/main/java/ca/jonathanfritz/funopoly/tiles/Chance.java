@@ -2,16 +2,16 @@ package ca.jonathanfritz.funopoly.tiles;
 
 import ca.jonathanfritz.funopoly.Board;
 import ca.jonathanfritz.funopoly.Player;
-import ca.jonathanfritz.funopoly.cards.ChanceDeck;
-import ca.jonathanfritz.funopoly.cards.ChanceDeck.ChanceCard;
+import ca.jonathanfritz.funopoly.cards.ChanceCard;
+import ca.jonathanfritz.funopoly.cards.Deck;
 import ca.jonathanfritz.funopoly.tiles.Property.Deed;
 import ca.jonathanfritz.funopoly.tiles.Railroad.Line;
 
 public class Chance extends Tile {
 
-	private final ChanceDeck cards;
+	final Deck<ChanceCard> cards;
 
-	public Chance(ChanceDeck cards) {
+	public Chance(Deck<ChanceCard> cards) {
 		this.cards = cards;
 	}
 
