@@ -1,6 +1,7 @@
 package ca.jonathanfritz.funopoly.tiles;
 
 import ca.jonathanfritz.funopoly.Board;
+import ca.jonathanfritz.funopoly.Dice.DiceRollResult;
 import ca.jonathanfritz.funopoly.Player;
 
 public abstract class OwnableTile extends Tile {
@@ -23,6 +24,10 @@ public abstract class OwnableTile extends Tile {
 		return price;
 	}
 
+	public boolean isOwned() {
+		return owner != null;
+	}
+
 	public Player getOwner() {
 		return owner;
 	}
@@ -32,5 +37,5 @@ public abstract class OwnableTile extends Tile {
 	}
 
 	@Override
-	public abstract void land(Player player, Board board);
+	public abstract void land(Player player, DiceRollResult diceRoll, Board board);
 }

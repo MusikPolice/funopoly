@@ -1,6 +1,10 @@
 package ca.jonathanfritz.funopoly.tiles;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ca.jonathanfritz.funopoly.Board;
+import ca.jonathanfritz.funopoly.Dice.DiceRollResult;
 import ca.jonathanfritz.funopoly.Player;
 import ca.jonathanfritz.funopoly.cards.ChanceCard;
 import ca.jonathanfritz.funopoly.cards.Deck;
@@ -11,42 +15,44 @@ public class Chance extends Tile {
 
 	final Deck<ChanceCard> cards;
 
+	private static final Logger log = LoggerFactory.getLogger(Chance.class);
+
 	public Chance(Deck<ChanceCard> cards) {
 		this.cards = cards;
 	}
 
 	@Override
-	public void land(Player player, Board board) {
+	public void land(Player player, DiceRollResult diceRoll, Board board) {
 		final ChanceCard card = cards.draw();
-		System.out.println(player.toString() + " draws a Chance card: " + card.toString());
+		log.info("{} draws a Chance card: {}", player, card);
 
 		switch (card) {
 			case ADVANCE_BOARDWALK:
-				board.movePlayerTo(player, Deed.BOARDWALK);
+				board.movePlayerTo(player, diceRoll, Deed.BOARDWALK);
 				break;
 			case ADVANCE_GO:
-				board.movePlayerTo(player, Type.GO);
+				board.movePlayerTo(player, diceRoll, Type.GO);
 				break;
 			case ADVANCE_ILLINOIS:
-				board.movePlayerTo(player, Deed.ILLINOIS_AVENUE);
+				board.movePlayerTo(player, diceRoll, Deed.ILLINOIS_AVENUE);
 				break;
 			case ADVANCE_JAIL:
 				player.setInJail(true);
-				board.movePlayerTo(player, Type.JAIL);
+				board.movePlayerTo(player, diceRoll, Type.JAIL);
 				break;
 			case ADVANCE_RAILROAD:
 				// TODO: pay owner twice the rental to which he/she is otherwise entitled
-				board.movePlayerTo(player, Type.RAILROAD);
+				board.movePlayerTo(player, diceRoll, Type.RAILROAD);
 				break;
 			case ADVANCE_READING_RAILROAD:
-				board.movePlayerTo(player, Line.READING);
+				board.movePlayerTo(player, diceRoll, Line.READING);
 				break;
 			case ADVANCE_ST_CHARLES:
-				board.movePlayerTo(player, Deed.ST_CHARLES_PLACE);
+				board.movePlayerTo(player, diceRoll, Deed.ST_CHARLES_PLACE);
 				break;
 			case ADVANCE_UTILITY:
 				// TODO: if owned, throw dice and pay owner a total ten times the amount thrown
-				board.movePlayerTo(player, Type.UTILITY);
+				board.movePlayerTo(player, diceRoll, Type.UTILITY);
 				break;
 			case BANK_DIVIDEND:
 				player.grant(50);
@@ -55,13 +61,14 @@ public class Chance extends Tile {
 				// pay each player $50
 				player.debit((board.getNumPlayers() - 1) * 50);
 				board.grantPlayers(50, player);
+				break;
 			case GET_OUT_OF_JAIL_FREE:
 				// can't possibly have gotten the card if it is unavailable
 				player.grantGetOutOfJailFreeCard();
 				cards.setGetOutOfJailFreeCardAvailable(false);
 				break;
 			case GO_BACK:
-				board.movePlayerNumSpaces(player, -3);
+				board.movePlayerNumSpaces(player, diceRoll, -3);
 				break;
 			case LOAN_MATURES:
 				player.grant(150);

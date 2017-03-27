@@ -3,13 +3,19 @@ package ca.jonathanfritz.funopoly.tiles;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ca.jonathanfritz.funopoly.Board;
+import ca.jonathanfritz.funopoly.Dice.DiceRollResult;
 import ca.jonathanfritz.funopoly.Player;
 
 public class Property extends OwnableTile {
 
 	private final Deed deed;
 	private int numHouses = 0;
+
+	private static final Logger log = LoggerFactory.getLogger(Property.class);
 
 	public Property(Deed deed) {
 		super(deed.name, deed.price);
@@ -46,9 +52,9 @@ public class Property extends OwnableTile {
 	}
 
 	@Override
-	public void land(Player player, Board board) {
+	public void land(Player player, DiceRollResult diceRoll, Board board) {
 		// do nothing - this is handled in Board
-		System.out.println(player.toString() + " lands on " + deed.name);
+		log.info("{} lands on {}", player, deed.name);
 	}
 
 	@Override
@@ -58,7 +64,7 @@ public class Property extends OwnableTile {
 
 	@Override
 	public String toString() {
-		return deed.name + (numHouses > 0 ? " (" + String.valueOf(numHouses) + " houses)" : "");
+		return deed.name + (numHouses > 0 ? " (" + numHouses + " houses)" : "");
 	}
 
 	/**
@@ -67,7 +73,8 @@ public class Property extends OwnableTile {
 	public enum Deed {
 		MEDITERRANEAN_AVENUE("Mediterranean Avenue", Property.ColourGroup.DARK_PURPLE, 60, new int[] { 60, 2, 10, 30,
 		        90, 160, 250 }),
-		BALTIC_AVENUE("Baltic Avenue", Property.ColourGroup.DARK_PURPLE, 60, new int[] { 60, 4, 20, 60, 180, 320, 450 }),
+		BALTIC_AVENUE("Baltic Avenue", Property.ColourGroup.DARK_PURPLE, 60,
+		        new int[] { 60, 4, 20, 60, 180, 320, 450 }),
 		ORIENTAL_AVENUE("Oriental Avenue", Property.ColourGroup.LIGHT_BLUE, 100, new int[] { 100, 6, 30, 90, 270, 400,
 		        550 }),
 

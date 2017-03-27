@@ -1,11 +1,17 @@
 package ca.jonathanfritz.funopoly.tiles;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ca.jonathanfritz.funopoly.Board;
+import ca.jonathanfritz.funopoly.Dice.DiceRollResult;
 import ca.jonathanfritz.funopoly.Player;
 
 public class Railroad extends OwnableTile {
 
 	private final Line line;
+
+	private static final Logger log = LoggerFactory.getLogger(Railroad.class);
 
 	public Railroad(Line line) {
 		super(line.name, line.price);
@@ -13,9 +19,9 @@ public class Railroad extends OwnableTile {
 	}
 
 	@Override
-	public void land(Player player, Board board) {
+	public void land(Player player, DiceRollResult diceRoll, Board board) {
 		// do nothing - this is handled in Board
-		System.out.println(player.toString() + " lands on " + line.name);
+		log.info("{} lands on {}", player, line.name);
 	}
 
 	public Line getLine() {

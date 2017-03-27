@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ca.jonathanfritz.funopoly.tiles.OwnableTile;
 import ca.jonathanfritz.funopoly.tiles.Property;
 import ca.jonathanfritz.funopoly.tiles.Property.ColourGroup;
@@ -15,16 +18,16 @@ public class Player {
 	private final String name;
 	private int balance;
 
-	private Tile position;
 	private boolean inJail;
 	private int getOutOfJailFreeCards = 0;
 
 	private final Random random = new Random();
 
-	public Player(String name, int balance, Tile position) {
+	private static final Logger log = LoggerFactory.getLogger(Player.class);
+
+	public Player(String name, int balance) {
 		this.name = name;
 		this.balance = balance;
-		this.position = position;
 	}
 
 	public String getName() {
@@ -35,20 +38,8 @@ public class Player {
 		return balance;
 	}
 
-	public Tile getPosition() {
-		return position;
-	}
-
-	public void setPosition(Tile tile) {
-		position = tile;
-	}
-
 	public boolean isInJail() {
-		return position.getType() == Type.JAIL && inJail;
-	}
-
-	public boolean isJustVisiting() {
-		return position.getType() == Type.JAIL && !inJail;
+		return inJail;
 	}
 
 	public void setInJail(boolean inJail) {
@@ -58,13 +49,13 @@ public class Player {
 	public int debit(int amount) {
 		// TODO: what if amount > balance? sell houses, mortgage, etc
 		balance -= amount;
-		System.out.println(name + " now has $" + String.valueOf(balance));
+		log.info("{} now has ${}", name, balance);
 		return balance;
 	}
 
 	public int grant(int amount) {
 		balance += amount;
-		System.out.println(name + " now has $" + String.valueOf(balance));
+		log.info("{} now has ${}", name, balance);
 		return balance;
 	}
 
@@ -104,11 +95,7 @@ public class Player {
 	public void buildHouses(List<Tile> tiles) {
 		for (final ColourGroup group : ColourGroup.values()) {
 			// find all properties in the group
-			final List<Property> propertiesInGroup = tiles.stream()
-			        .filter(t -> t.getType() == Type.PROPERTY)
-			        .filter(t -> ((Property) t).getDeed().getColour() == group)
-			        .map(t -> ((Property) t))
-			        .collect(Collectors.toList());
+			final List<Property> propertiesInGroup = tiles.stream().filter(t -> t.getType() == Type.PROPERTY).filter(t -> ((Property) t).getDeed().getColour() == group).map(t -> (Property) t).collect(Collectors.toList());
 
 			// if player has a monopoly over an entire colour group, and they don't already have a hotel on all houses
 			// in the group, they can opt to upgrade it
@@ -119,15 +106,12 @@ public class Player {
 				final int cost = propertiesInGroup.size() * group.getHouseCost();
 				if (cost < balance) {
 					// add a house to each
-					System.out.println(name + " builds houses on "
-					        + propertiesInGroup.stream().map(p -> p.toString()).collect(Collectors.joining(", ")));
-					propertiesInGroup.stream()
-					        .forEach(p -> p.buyHouse());
+					log.info("{} builds houses on {}", name, propertiesInGroup.stream().map(Property::toString).collect(Collectors.joining(", ")));
+					propertiesInGroup.stream().forEach(Property::buyHouse);
 					debit(cost);
 				}
 			}
 		}
-
 	}
 
 	@Override

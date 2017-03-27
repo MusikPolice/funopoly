@@ -11,10 +11,14 @@ public class Deck<E extends Card> {
 	private int pointer = 0;
 	private boolean getOutOfJailFreeCardAvailable = true;
 
+	private Deck(List<E> cards) {
+		this.cards = cards;
+	}
+
 	public static Deck<CommunityChestCard> communityChest() {
 		// the community chest deck has one of each card
 		final List<CommunityChestCard> cards = Arrays.asList(CommunityChestCard.values());
-		return new Deck<CommunityChestCard>(cards);
+		return new Deck<>(cards);
 	}
 
 	public static Deck<ChanceCard> chance() {
@@ -22,11 +26,7 @@ public class Deck<E extends Card> {
 		final List<ChanceCard> cards = new ArrayList<>();
 		cards.addAll(Arrays.asList(ChanceCard.values()));
 		cards.add(ChanceCard.ADVANCE_RAILROAD);
-		return new Deck<ChanceCard>(cards);
-	}
-
-	private Deck(List<E> cards) {
-		this.cards = cards;
+		return new Deck<>(cards);
 	}
 
 	public E draw() {

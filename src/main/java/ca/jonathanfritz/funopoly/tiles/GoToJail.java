@@ -1,15 +1,21 @@
 package ca.jonathanfritz.funopoly.tiles;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ca.jonathanfritz.funopoly.Board;
+import ca.jonathanfritz.funopoly.Dice.DiceRollResult;
 import ca.jonathanfritz.funopoly.Player;
 
 public class GoToJail extends Tile {
 
+	private static final Logger log = LoggerFactory.getLogger(GoToJail.class);
+
 	@Override
-	public void land(Player player, Board board) {
-		System.out.println(player.toString() + " lands on Go to Jail");
+	public void land(Player player, DiceRollResult diceRoll, Board board) {
+		log.info("{} lands on Go to Jail", player);
 		player.setInJail(true);
-		board.movePlayerTo(player, Type.JAIL);
+		board.movePlayerTo(player, diceRoll, Type.JAIL);
 	}
 
 	@Override

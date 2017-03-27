@@ -1,6 +1,10 @@
 package ca.jonathanfritz.funopoly.tiles;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ca.jonathanfritz.funopoly.Board;
+import ca.jonathanfritz.funopoly.Dice.DiceRollResult;
 import ca.jonathanfritz.funopoly.Player;
 import ca.jonathanfritz.funopoly.cards.CommunityChestCard;
 import ca.jonathanfritz.funopoly.cards.Deck;
@@ -9,22 +13,24 @@ public class CommunityChest extends Tile {
 
 	final Deck<CommunityChestCard> cards;
 
+	private static final Logger log = LoggerFactory.getLogger(CommunityChest.class);
+
 	public CommunityChest(Deck<CommunityChestCard> cards) {
 		this.cards = cards;
 	}
 
 	@Override
-	public void land(Player player, Board board) {
+	public void land(Player player, DiceRollResult diceRoll, Board board) {
 		final CommunityChestCard card = cards.draw();
-		System.out.println(player.toString() + " draws a Community Chest card: " + card.toString());
+		log.info("{} draws a Community Chest card: {}", player, card);
 
 		switch (card) {
 			case ADVANCE_GO:
-				board.movePlayerTo(player, Type.GO);
+				board.movePlayerTo(player, diceRoll, Type.GO);
 				break;
 			case ADVANCE_JAIL:
 				player.setInJail(true);
-				board.movePlayerTo(player, Type.JAIL);
+				board.movePlayerTo(player, diceRoll, Type.JAIL);
 				break;
 			case BANK_ERROR:
 				player.grant(200);
@@ -48,15 +54,11 @@ public class CommunityChest extends Tile {
 				player.grant((board.getNumPlayers() - 1) * 50);
 				board.debitPlayers(50, player);
 				break;
-			case HOLIDAY_FUND:
-				player.grant(100);
-				break;
 			case HOSPITAL_FEES:
 				player.debit(100);
 				break;
+			case HOLIDAY_FUND:
 			case INHERIT:
-				player.grant(100);
-				break;
 			case LIFE_INSURANCE:
 				player.grant(100);
 				break;
@@ -79,5 +81,4 @@ public class CommunityChest extends Tile {
 	public Type getType() {
 		return Type.COMMUNITY_CHEST;
 	}
-
 }
