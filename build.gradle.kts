@@ -31,5 +31,5 @@ tasks.withType<KotlinCompile>() {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("ca.jonathanfritz.funopoly.MainKt")
 }
