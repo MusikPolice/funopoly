@@ -1,0 +1,47 @@
+package ca.jonathanfritz.funopoly.game.board
+
+class Board {
+    val spaces: List<BoardSpace> = listOf(
+        Event.Go,
+        Property.MediterraneanAvenue,
+        Event.CommunityChest,
+        Property.BalticAvenue,
+        Event.IncomeTax,
+        Property.Railroad.ReadingRailroad,
+        Property.OrientalAvenue,
+        Event.Chance,
+        Property.VermontAvenue,
+        Property.ConnecticutAvenue,
+        Event.Jail,
+        Property.StCharlesPlace,
+        Property.Utility.ElectricCompany,
+        Property.StatesAvenue,
+        Property.VirginiaAvenue,
+        Property.Railroad.PennsylvaniaRailroad,
+        Property.StJamesPlace,
+        Event.CommunityChest,
+        Property.TennesseeAvenue,
+        Property.NewYorkAvenue,
+        Event.FreeParking,
+        Property.KentuckyAvenue,
+        Event.Chance,
+        Property.IndianaAvenue,
+        Property.IllinoisAvenue,
+        Property.Railroad.BORailroad,
+        Property.AtlanticAvenue,
+        Property.VentnorAvenue,
+        Property.Utility.WaterWorks,
+        Property.MarvinGardens,
+        Event.GoToJail,
+        Property.PacificAvenue,
+        Property.NorthCarolinaAvenue,
+        Event.CommunityChest,
+        Property.PennsylvaniaAvenue,
+        Property.Railroad.ShortLineRailroad,
+        Event.Chance,
+        Property.ParkPlace,
+        Event.LuxuryTax,
+        Property.Boardwalk
+    )
+
+}

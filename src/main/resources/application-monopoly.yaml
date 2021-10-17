@@ -1,0 +1,9 @@
+# this config defines the official base ruleset for Monopoly
+
+maxRounds: 10 # each player gets one turn per round
+initialPlayerFunds: 1500
+
+bank:
+  houses: 32
+  hotels: 12
+  funds: 20580
